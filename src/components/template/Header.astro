@@ -1,0 +1,120 @@
+---
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+---
+
+<header
+  class="mx-auto max-h-screen py-4 w-full border-b border-gray-50/0 ease-in-out flex-none sticky top-0 transition-[opacity] z-40"
+>
+  <div
+    class="relative mx-auto md:px-6 text-default max-w-7xl md:grid md:grid-cols-3 md:items-center px-3 py-3 w-full"
+  >
+    <div class="flex justify-between">
+      <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img
+          src="/public/logo.svg"
+          alt="Logo KYP Bioingeniería"
+          class="w-auto h-[50px]"
+        />
+      </a>
+      <div class="flex items-center md:hidden">
+        <button
+          data-collapse-toggle="navbar-sticky"
+          type="button"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+          aria-controls="navbar-sticky"
+          aria-expanded="false"
+        >
+          <span class="sr-only">Open main menu</span>
+          <svg
+            class="w-5 h-5"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 17 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M1 1h15M1 7h15M1 13h15"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <nav
+      class="items-center md:w-auto w-full md:flex md:justify-self-center md:mx-5 md:overflow-x-auto md:overflow-y-visible overflow-x-hidden overflow-y-auto text-default hidden"
+    >
+      <ul
+        class="flex flex-col md:flex-row font-cairo font-normal text-[16px] md:justify-center md:self-center md:text-[0.9375rem] md:w-auto text-xl tracking-[0.01rem] w-full"
+      >
+        <li>
+          <a
+            href="#"
+            class="flex items-center dark:hover:text-white hover:text-link px-4 py-3 whitespace-nowrap"
+            >Beneficios y Características</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
+            >Testimonios</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
+            >Procesos</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
+            >Nosotros</a
+          >
+        </li>
+        <li>
+          <a
+            href="#"
+            class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
+            >FAQ</a
+          >
+        </li>
+      </ul>
+    </nav>
+
+    <div
+      class="items-center md:w-auto w-full md:flex bottom-0 fixed justify-end left-0 md:justify-self-end md:mb-0 md:p-0 md:self-center md:static p-3 rtl:left-auto rtl:right-0 hidden"
+    >
+      <Button
+        variant="outline"
+        className={cn(
+          "font-cairo font-bold text-[16px] text-textPrimary px-4 py-2"
+        )}
+      >
+        Consulta gratuita
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-narrow-right"
+          ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+            d="M5 12l14 0"></path><path d="M15 16l4 -4"></path><path
+            d="M15 8l4 4"></path></svg
+        >
+      </Button>
+    </div>
+  </div>
+</header>
+
