@@ -1,0 +1,31 @@
+---
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+---
+
+<section
+  id="nosotros"
+  class="mx-auto max-w-7xl py-20 px-4 w-full grid grid-cols-1 md:grid-cols-2 gap-8 p-10 items-center"
+>
+  <div class="flex flex-col items-start">
+    <img src="/nosotros.png" alt="Beneficios y Características" />
+  </div>
+  <div class="flex flex-col justify-center lg:justify-start gap-7">
+    <Badge
+      variant="outline"
+      className={cn(
+        "font-cairo font-bold text-[20px] text-default1 bg-default1/10 border border-default1/50 w-[156px] text-center"
+      )}>Sobre Nosotros</Badge
+    >
+    <div class="">
+      <h3 class="font-display font-normal text-[40px]">
+        Comprometidos con tu 
+        <br class="hidden md:block">
+        bienestar
+      </h3>
+    </div>
+    <div>
+        <p class="font-cairo font-medium text-[20px]">En <span class="text-default1 font-bold">KYP BIOINGENIERÍA</span>, nos dedicamos a mejorar la calidad de vida de personas con amputación, ofreciendo soluciones integrales y un acompañamiento completo en cada etapa del proceso.</p>
+    </div>
+  </div>
+</section>

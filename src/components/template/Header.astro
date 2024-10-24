@@ -4,21 +4,23 @@ import { cn } from "@/lib/utils";
 ---
 
 <header
-  class="mx-auto max-h-screen py-4 w-full border-b border-gray-50/0 ease-in-out flex-none sticky top-0 transition-[opacity] z-40"
+  id="main-header"
+  class="mx-auto max-h-screen py-1 w-full border-b border-gray-50/0 ease-in-out flex-none sticky top-0 transition-[background-color, opacity] duration-300 z-40 bg-transparent"
 >
   <div
-    class="relative mx-auto md:px-6 text-default max-w-7xl md:grid md:grid-cols-3 md:items-center px-3 py-3 w-full"
+    class="relative mx-auto md:px-6 text-default max-w-7xl md:grid md:grid-cols-3 md:items-center px-3 py-1 w-full"
   >
     <div class="flex justify-between">
       <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
         <img
           src="/public/logo.svg"
           alt="Logo KYP Bioingeniería"
-          class="w-auto h-[50px]"
+          class="w-auto h-[40px]"
         />
       </a>
       <div class="flex items-center md:hidden">
         <button
+          id="menu-toggle"
           data-collapse-toggle="navbar-sticky"
           type="button"
           class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-md md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
@@ -52,39 +54,84 @@ import { cn } from "@/lib/utils";
       >
         <li>
           <a
-            href="#"
+            href="#benefits"
             class="flex items-center dark:hover:text-white hover:text-link px-4 py-3 whitespace-nowrap"
             >Beneficios y Características</a
           >
         </li>
         <li>
           <a
-            href="#"
+            href="#testimonios"
             class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
             >Testimonios</a
           >
         </li>
         <li>
           <a
-            href="#"
+            href="#procesos"
             class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
             >Procesos</a
           >
         </li>
         <li>
           <a
-            href="#"
+            href="#nosotros"
             class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
             >Nosotros</a
           >
         </li>
         <li>
           <a
-            href="#"
+            href="#faq"
             class="flex items-center hover:text-link px-4 py-3 whitespace-nowrap"
             >FAQ</a
           >
         </li>
+      </ul>
+    </nav>
+
+    <!-- Navigation Menú Móvil -->
+    <nav
+      id="mobile-menu"
+      class="fixed top-0 left-0 w-full h-full bg-white z-50 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden"
+    >
+      <div
+        class="flex justify-between items-center p-4 border-b border-gray-200"
+      >
+        <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+          <img
+            src="/public/logo.svg"
+            alt="Logo KYP Bioingeniería"
+            class="w-auto h-[40px]"
+          />
+        </a>
+        <button id="close-menu" class="text-gray-500 w-10 h-10">
+          <svg
+            class="w-5 h-5"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+      </div>
+      <ul
+        class="flex flex-col items-start p-6 font-cairo text-[16px] space-y-4"
+      >
+        <li>
+          <a href="#benefits" class="hover:text-link"
+            >Beneficios y Características</a>
+        </li>
+        <li><a href="#testimonios" class="hover:text-link">Testimonios</a></li>
+        <li><a href="#procesos" class="hover:text-link">Procesos</a></li>
+        <li><a href="#nosotros" class="hover:text-link">Nosotros</a></li>
+        <li><a href="#faq" class="hover:text-link">FAQ</a></li>
       </ul>
     </nav>
 
@@ -118,3 +165,60 @@ import { cn } from "@/lib/utils";
   </div>
 </header>
 
+<script>
+  // JavaScript para cambiar el fondo del header cuando se hace scroll
+  window.addEventListener("scroll", function () {
+    const header = document.getElementById("main-header")!;
+    if (window.scrollY > 50) {
+      header.classList.add("bg-white", "shadow-md");
+      header.classList.remove("bg-transparent");
+    } else {
+      header.classList.add("bg-transparent");
+      header.classList.remove("bg-white", "shadow-md");
+    }
+  });
+
+  window.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menu-toggle")!;
+    const menuIcon = document.getElementById("menu-icon")!;
+    const closeIcon = document.getElementById("close-icon")!;
+    const mobileMenu = document.getElementById("mobile-menu")!;
+
+    menuToggle.addEventListener("click", () => {
+      // Alternar entre abrir y cerrar el menú
+      const isMenuOpen = mobileMenu.classList.contains("translate-x-0")!;
+      if (isMenuOpen) {
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("-translate-x-full");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      } else {
+        mobileMenu.classList.remove("-translate-x-full");
+        mobileMenu.classList.add("translate-x-0");
+        menuIcon.classList.add("hidden");
+        closeIcon.classList.remove("hidden");
+      }
+    });
+
+    // Para cerrar el menú desde el botón "cerrar"
+    const closeMenuButton = document.getElementById("close-menu")!;
+    closeMenuButton.addEventListener("click", () => {
+      mobileMenu.classList.add("-translate-x-full");
+      mobileMenu.classList.remove("translate-x-0");
+      menuIcon.classList.remove("hidden");
+      closeIcon.classList.add("hidden");
+    });
+
+    // Agregar evento a los elementos del menú móvil para cerrar el menú después del clic
+    const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+    mobileMenuLinks.forEach((link) => {
+      link.addEventListener("click", () => {
+        // Cerrar el menú móvil cuando se hace clic en un enlace
+        mobileMenu.classList.add("-translate-x-full");
+        mobileMenu.classList.remove("translate-x-0");
+        menuIcon.classList.remove("hidden");
+        closeIcon.classList.add("hidden");
+      });
+    });
+  });
+</script>

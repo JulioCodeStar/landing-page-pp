@@ -1,9 +1,9 @@
 ---
-import Header from '../components/template/Header.astro';
-import Footer from '../components/template/Footer.astro';
+import Header from "../components/template/Header.astro";
+import Footer from "../components/template/Footer.astro";
 
 interface Props {
-	title: string;
+  title: string;
 }
 
 const { title } = Astro.props;
@@ -11,21 +11,23 @@ const { title } = Astro.props;
 
 <!doctype html>
 <html lang="es">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body class="bg-gradient-to-b from-cyan-50 to-white">
-		<Header />
-		<slot />
-		<Footer />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+  </head>
+  <body class="bg-gradient-to-b from-cyan-50 to-white">
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
 
 <style is:global>
-	
+  html {
+    scroll-behavior: smooth;
+  }
 </style>
