@@ -1,15 +1,15 @@
 ---
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 ---
 
 <section
@@ -17,7 +17,9 @@ import { Textarea } from "@/components/ui/textarea"
 >
   <!-- Texto y título -->
   <div class="flex flex-col items-start md:py-20">
-    <h1 class="text-4xl lg:text-5xl font-display font-bold text-black leading-tight">
+    <h1
+      class="text-4xl lg:text-5xl font-display font-bold text-black leading-tight"
+    >
       Prótesis de Pierna:
       <br class="hidden md:block" />
       <span class="text-default1">Adaptado a tu nivel</span>
@@ -34,51 +36,103 @@ import { Textarea } from "@/components/ui/textarea"
   <!-- Formulario -->
   <div class="flex justify-center lg:justify-end">
     <Card className="w-full max-w-[450px]">
-      <CardHeader>
-        <CardTitle className="font-cairo font-bold text-[28px] text-center pb-1.5">
-          Agenda tu Cita
-        </CardTitle>
-      </CardHeader>
-      <CardContent>
-        <form>
+      <form id="whatsapp-form">
+        <CardHeader>
+          <CardTitle
+            className="font-cairo font-bold text-[28px] text-center pb-1.5"
+          >
+            Agenda tu Cita
+          </CardTitle>
+        </CardHeader>
+        <CardContent>
           <div class="grid w-full items-center gap-4">
             <div class="flex flex-col space-y-1.5">
               <Label htmlFor="name">Nombres y Apellidos</Label>
-              <Input id="name" placeholder="Nombres y Apellidos" />
+              <Input
+                id="name"
+                name="name"
+                placeholder="Nombres y Apellidos"
+                required
+              />
             </div>
             <div class="flex flex-col space-y-1.5">
               <Label htmlFor="cellphone">Número de Celular</Label>
-              <Input id="cellphone" placeholder="Número de Celular" />
+              <Input
+                id="cellphone"
+                name="cellphone"
+                placeholder="Número de Celular"
+                required
+              />
             </div>
             <div class="grid w-full gap-1.5">
-              <Label htmlFor="message-2">Descripción</Label>
-              <Textarea placeholder="Escribe tu mensaje aquí." id="message-2" />
+              <Label htmlFor="description">Descripción</Label>
+              <Textarea
+                placeholder="Escribe tu mensaje aquí."
+                id="description"
+                name="description"
+                required
+              />
             </div>
           </div>
-        </form>
-      </CardContent>
-      <CardFooter className="flex justify-between pt-1.5">
-        <Button>
-          Enviar
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="icon icon-tabler icons-tabler-outline icon-tabler-send"
-          >
-            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-            <path d="M10 14l11 -11" />
-            <path d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5" />
-          </svg>
-        </Button>
-      </CardFooter>
+        </CardContent>
+        <CardFooter className="flex justify-between pt-1.5">
+          <Button type="submit" id="submit-button">
+            Enviar
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="icon icon-tabler icons-tabler-outline icon-tabler-send"
+            >
+              <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+              <path d="M10 14l11 -11"></path>
+              <path
+                d="M21 3l-6.5 18a.55 .55 0 0 1 -1 0l-3.5 -7l-7 -3.5a.55 .55 0 0 1 0 -1l18 -6.5"
+              ></path>
+            </svg>
+          </Button>
+        </CardFooter>
+      </form>
     </Card>
   </div>
 </section>
 
+<script>
+  document.getElementById("submit-button")!.addEventListener("click", () => {
+    // Obtener los valores de los campos del formulario
+    const name = (document.getElementById("name") as HTMLInputElement).value;
+    const cellphone = (document.getElementById("cellphone") as HTMLInputElement)
+      .value;
+    const description = (
+      document.getElementById("description") as HTMLTextAreaElement
+    ).value;
+
+    // Validar que todos los campos tengan valores
+    if (!name || !cellphone || !description) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
+
+    // Construir el mensaje de WhatsApp
+    const message = `Nombre : ${name}.\nCelular : ${cellphone} \nMensaje: ${description}`;
+
+    // Codificar el mensaje para usarlo en la URL de WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+
+    // Número de WhatsApp del destinatario (cambiarlo según tu necesidad)
+    const recipientPhone = "51922578858"; // Incluye el código del país sin el símbolo +
+
+    // Construir la URL de WhatsApp
+    const whatsappURL = `https://wa.me/${recipientPhone}?text=${encodedMessage}`;
+
+    // Abrir WhatsApp en una nueva pestaña
+    window.open(whatsappURL, "_blank");
+    window.location.reload();
+  });
+</script>
